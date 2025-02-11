@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <script src="%PUBLIC_URL%/menu.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Web site created using create-react-app" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Football Teams Database</title>
+  </head>
+  <body>
+    <h1 class="header-box">Welcome to our Football Database Application</h1>
+    <div id="root"></div>
+
+    <div class="overlay" onclick="toggleMenu()"></div>
+    <!-- Toggler Container -->
+    <div class="menu__container">
+      <!-- Menu Toggler Button -->
+      <div class="menu__toggler hidden" id="menuToggler" onclick="toggleMenu()">
+        <span class="menu__toggle-icon"></span>
+        <strong id="menuText">Menu</strong>
+      </div>
+      <!-- Menu -->
+      <div class="menu">
+        <!-- Menu list updated to use React Router links -->
+        <nav>
+          <ul>
+            <li><a href="/add-team">Add Team</a></li>
+            <li><a href="/update-team">Update Team</a></li>
+            <li><a href="/delete-team">Delete Team</a></li>
+            <li><a href="/team-stats">Team Stats</a></li>
+            <li><a href="/top-teams">Top Teams</a></li>
+            <li><a href="/average-goals">Average Goals</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </body>
+</html>

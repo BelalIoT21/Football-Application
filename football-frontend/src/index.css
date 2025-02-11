@@ -1,0 +1,394 @@
+/* Apply a full-screen gradient background */
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #001f3f, #6a0dad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Center the main app container */
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* Header styling */
+.header-box {
+  position: fixed;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 700px;
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #001f3f;
+}
+
+/* Form container styling */
+.form-container {
+  margin-top: 120px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+/* Result list styling */
+.results {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Form header styling */
+.form-header {
+  text-align: center;
+  align-items: top;
+  justify-content: top;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #001f3f;
+  margin-bottom: 20px;
+}
+
+/* Input fields styling */
+.form-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Button styling */
+.form-button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #6a0dad;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  caret-color: transparent;
+  transition: background-color 0.3s;
+}
+
+.form-button:hover {
+  background-color: #4b0082;
+}
+
+/* Stats box styling */
+.stats-box {
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f0f0f5;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+  width: 100%;
+  max-width: 500px;
+  min-width: 300px;
+  overflow-x: auto;
+}
+
+/* Individual stats item styling */
+.stats-item {
+  margin-bottom: 15px;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.1rem;
+}
+
+/* Paragraph styling for each stat */
+.stats-item p {
+  margin: 5px 0;
+  color: #333;
+  white-space: normal;
+}
+
+/* Bold labels for stats */
+.stats-item strong {
+  color: #6a0dad;
+  font-weight: bold;
+}
+
+/* No data message styling */
+.no-data {
+  font-size: 1.2rem;
+  color: #ff0000;
+  text-align: center;
+}
+
+/* Custom scrollbar styling for the form box */
+.form-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.form-container::-webkit-scrollbar-thumb {
+  background-color: #6a0dad;
+  border-radius: 4px;
+}
+
+/* Menu Container Styles */
+.menu__container {
+  position: fixed;
+}
+
+/* Menu Toggler Styles */
+.menu__toggler {
+  position: fixed;
+  top: 3vw;
+  right: 2vw;
+  z-index: 999;
+  height: 2.8vw;
+  width: 8vw;
+  cursor: pointer;
+  caret-color: transparent;
+  align-items: center;
+  border: 2px solid #6a0dad;
+  background-color: #fafafa;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  color: #6a0dad;
+  transition: 300ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Styles for the menu toggler icon and its pseudo-elements */
+.menu__toggler > span,
+.menu__toggler > span::before,
+.menu__toggler > span::after {
+  position: absolute;
+  content: '';
+  width: 2vw;
+  height: 0.2vw;
+  background: #6a0dad;
+  border-radius: 5px;
+  top: 40vw;
+  transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.menu__toggler.active {
+  top: 2%;
+}
+
+/* Styles for the menu toggler icon */
+.menu__toggler > span {
+  top: 45%;
+  right: 7%;
+  caret-color: transparent;
+}
+
+.menu__toggler > span::before {
+  top: -0.58vw;
+}
+
+.menu__toggler > span::after {
+  top: 0.59vw;
+}
+
+/* Apply styles when menu toggler is active */
+.menu__toggler.active > span {
+  background: transparent;
+}
+
+.menu__toggler.active > span::before,
+.menu__toggler.active > span::after {
+  background: #6a0dad;
+  top: 0vw;
+}
+
+.menu__toggler.active > span::before {
+  transform: rotate(-225deg);
+}
+
+.menu__toggler.active > span::after {
+  transform: rotate(225deg);
+}
+
+/* Styles for the menu text */
+#menuText {
+  font-weight: bold;
+  font-size: 1.5vw;
+  margin-left: 0.9vw;
+  display: inline-block;
+  user-select: none;
+  caret-color: transparent;
+}
+
+/* Menu Styles */
+.menu {
+  position: fixed;
+  top: 0;
+  right: -30%;
+  z-index: 998;
+  background-color: rgb(255, 255, 255);
+  padding: 15px;
+  border-top-left-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 20%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: 300ms right cubic-bezier(0.77, 0, 0.175, 1), 300ms opacity cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Apply styles when menu is active */
+.menu.active {
+  right: 0;
+  display: flex;
+}
+
+/* Side Menu Container Styles */
+.menu ul {
+  list-style-type: none;
+  padding: 0px;
+  margin-top: 20%;
+  text-align: center;
+}
+
+.menu li {
+  display: column;
+  margin: 1.5vw 1vw;
+}
+
+.menu li a {
+  text-decoration: none;
+  font-size: 2vw;
+  color: #333;
+}
+
+.menu li a:hover {
+  cursor: pointer;
+  color: #6a0dad;
+}
+
+/* Overlay Styles */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+body.overlay-active {
+  overflow-y: hidden;
+}
+
+body.overlay-active .section1_button {
+  z-index: -1;
+}
+
+/* Button Styling */
+.button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  color: #fff;
+  background-color: #6a0dad;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  caret-color: transparent;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #4b0082;
+}
+
+.button:focus {
+  outline: none;
+  caret-color: transparent;
+}
+
+li {
+  list-style: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+li:focus {
+  outline: none;
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.stats-table th {
+  background-color: #6a0dad;
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.stats-table td {
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+.stats-table tr:hover {
+  background-color: #f2f2f2;
+}
+
+@media (max-width: 768px) {
+  .stats-table th, .stats-table td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+.stats-box {
+  overflow-x: auto;
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stats-box::-webkit-scrollbar {
+  height: 8px;
+}
+
+.stats-box::-webkit-scrollbar-thumb {
+  background-color: #6a0dad;
+  border-radius: 4px;
+}
+
